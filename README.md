@@ -40,3 +40,21 @@
     josefina
     amanda
     rogerio
+
+## OBSERVAÇÕES
+Dependendo da versão do openssl o comando *-crypt* não funciona, desta forma, de acordo com a documentação [openssl](https://www.openssl.org/docs/man1.1.1/man1/openssl-passwd.html) é possível utilizar as seguintes criptografias em seu lugar:
+* -1 para MD5 baseado em BSD
+
+    ><s>useradd carlos -m -s /bin/bash -p $(openssl passwd -crypt password) -G GRP_ADM</s>
+
+    >useradd carlos -m -s /bin/bash -p $(openssl passwd -1 password) -G GRP_ADM
+
+* -5 para SHA256
+    ><s>useradd carlos -m -s /bin/bash -p $(openssl passwd -crypt password) -G GRP_ADM</s>
+
+    >useradd carlos -m -s /bin/bash -p $(openssl passwd -5 password) -G GRP_ADM
+
+* -6 para SHA512
+    ><s>useradd carlos -m -s /bin/bash -p $(openssl passwd -crypt password) -G GRP_ADM</s>
+    
+    >useradd carlos -m -s /bin/bash -p $(openssl passwd -6 password) -G GRP_ADM
